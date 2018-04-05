@@ -49,8 +49,8 @@
 ## 6. Оформление внешних ссылок
 Обязательно добавлять в ссылки на внешние сайты 2 тэга:
 
-1. target="_blank" Открывает в новой вкладке и не уводит посетителя с нашего сайта
-2. rel="noopener nofollow" Безопасность, для SEO- робот-поисковик не уходит на чужой сайт
+1. 'target="_blank"' Открывает в новой вкладке и не уводит посетителя с нашего сайта
+2. 'rel="noopener nofollow"' Безопасность, для SEO- робот-поисковик не уходит на чужой сайт
 
 Пример правильного оформления:
-\<a target="_blank" rel="noopener nofollow" href="http:\\example.com">Example\</a>
+'\<a target="_blank" rel="noopener nofollow" href="http:\\example.com">Example\</a>'
