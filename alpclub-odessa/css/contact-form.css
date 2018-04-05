@@ -1,0 +1,129 @@
+/* Contact Form CSS*/
+/*
+https://stackoverflow.com/questions/22547096/include-font-awesome-inside-input-type-text
+*/
+
+
+/*
+#contact label {
+display:block;
+padding:5px 0;
+}
+*/
+/*
+#contact input, #contact textarea {
+border:1px solid #ddd;
+padding:8px;
+width:300px;
+margin-bottom:10px;
+-moz-border-radius:4px;
+-webkit-border-radius:4px;
+}
+
+#contact textarea {
+width:500px;
+font-family:Arial, Helvetica, sans-serif;
+font-size:13px;
+}
+
+#contact input[type="submit"]{
+border:none;
+width:151px;
+height:32px;
+margin-top:10px;
+cursor:pointer;
+color:#FFF;
+font-size:12px;
+padding:0;
+}
+*/
+.atcf-wrapper input[type="submit"]{
+	cursor:pointer;
+}
+	
+.atcf-wrapper input[type="text"], 
+.atcf-wrapper input[type="tel"], 
+.atcf-wrapper input[type="email"],
+.atcf-wrapper textarea {
+	width: 100%;
+	padding-right: 10px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+ul.atcf-fields {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.atcf-i-field {
+  margin-bottom:30px;
+}
+
+.atcf-i-field::before {
+    font-family: FontAwesome;
+    position: absolute;
+    top: 6px;
+    left: 12px;
+}
+.atcf-i-first-name,
+.atcf-i-phone,
+.atcf-i-email,
+.atcf-i-subject {
+    position: relative;
+}
+.atcf-i-first-name::before {
+  content: "\f007";
+}
+/*
+.atcf-i-last_name::before {
+  font-family: "FontAwesome";
+  content: "";
+}
+*/
+
+.atcf-i-phone::before {
+  content: "\f095";
+}
+.atcf-i-email::before {
+  content: "\f003";
+}
+.atcf-i-subject::before {
+  content: "\f02b";
+}
+
+li.atcf-i-field input{
+  padding-left: 35px;
+}
+.atcf-wrapper .atcf-message-wrapper {
+  margin: 10px 10px;
+  width: 100%;
+}
+.atcf-wrapper .errormsg,
+.atcf-wrapper .successmsg {
+  width: 100%;
+}
+
+.atcf-wrapper .error, 
+.atcf-wrapper .errormsg,
+.atcf-wrapper .successmsg {
+  border:1px solid;
+  padding:10px;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+}
+.atcf-wrapper .error {
+  font-size:10px;	
+}
+
+.atcf-wrapper .error, 
+.atcf-wrapper .errormsg  {
+  margin-top:5px;
+  background:#FEF4F1;
+  color:#DA4310;	
+  border:#F7A68A;
+}	
+.atcf-wrapper .successmsg {
+  background:#F5FAF1;
+  color:#8FA943;	
+  border:#C2E1AA;
+}

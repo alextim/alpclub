@@ -1,0 +1,57 @@
+﻿Содержание
+
+2.     Настройки Wordpress
+2.1.     Файлы \wp-admin\
+2.2.     Файл \wp-config.php
+
+
+2.     Настройки Wordpress
+
+2.1.   Файлы \wp-admin\
+Переименованы файлы и изменены права доступа 640 -> 0
+install.php  ->  in-s-tall.php
+upgrade.php  ->  up-g-rade.php
+Файлы видны только через встроенный FTP-client провайдера
+
+2.2.    Файл \wp-config.php
+
+Изменены права доступа 640 -> 440
+
+Database: ir300760_alpclub
+User:     ir300760_alpclub
+Password: abb775xh
+Host:     ir300760.mysql.tools
+
+// ATPTM
+$table_prefix  = 'aco_2018_';
+
+
+Добавлены переменные
+// ATPTM
+//define('WP_DEBUG', false);
+define('WP_DEBUG', true);
+
+// ATPTM
+define( 'WP_DEBUG_DISPLAY', true );
+
+// ATPTM
+// Enable Debug logging to the /wp-content/debug.log file
+define( 'WP_DEBUG_LOG', true );
+
+// Disable display of errors and warnings 
+/*
+define( 'WP_DEBUG_DISPLAY', false );
+@ini_set( 'display_errors', 0 );
+*/
+// ATPTM
+//отключение или ограничение количества хранимых исправлений в базе данных
+// не работает после define('ABSPATH')
+define('AUTOSAVE_INTERVAL', 600);
+define('WP_POST_REVISIONS', false);
+
+// ATPTM
+// Disable Theme And Plugin Editor
+// https://paulund.co.uk/secure-wordpress
+define( 'DISALLOW_FILE_EDIT', true);
+// запрет редактирования темы и установки плагинов
+define( 'DISALLOW_FILE_MODS', false);

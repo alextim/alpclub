@@ -1,0 +1,769 @@
+/*
+Theme Name: Alpclub Odessa
+Theme URI:      
+Description: Child Theme
+Author: Alex Tim
+Author URI:
+Template: surya-chandra-lite
+Version: 0.1.2
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: light, two-columns, right-sidebar, custom-header
+Text Domain: alpclub-odessa 
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+/*
+0.  Насторойки родителя
+1.  Column
+2.  Tabs
+2.1. Single Trip - Tab регистрационной формы
+3.  Contact
+4.  Person
+5.  Counter
+6.  Trip
+7.  Feature-Services
+8.  Price List
+9.  boulder-gym-schedule
+10. Описание таксономии в архивах - cpt-archive.php и archive.php
+18.17.2. Recent Trips
+19.3 Social share
+20.  Media Queries
+*/
+
+/*----------------------------------
+0
+----------------------------------*/
+/*****
+В Poppins нет русского
+
+surya-chandra-lite\css\editor-style.css Line:139 
+surya-chandra-lite\style.css            Lins: 313, 1574 
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 10px 0;
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: 500;
+    color: #000;
+    line-height: 1.5;
+}
+.site-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1;
+    font-family: Verdana, Geneva, sans-serif;
+}
+/*
+борьба с блеклыми картинками
+черная подложка
+*/
+#google-map-row {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+#content.site-content.site-single-trip {
+  padding-top:0px;
+}
+/*--------------------------------------------------------------
+10.3. Custom Header
+было 0.4
+--------------------------------------------------------------*/
+#custom-header::after {
+    opacity: 0.1;
+    filter: alpha(opacity=10); /* For IE8 and earlier */
+}
+
+/*--------------------------------------------------------------
+11.1. Header layout 2
+было 0.5
+--------------------------------------------------------------*/
+.header-layout-2 .widget_surya-chandra-slider .overlay-enabled article::after {
+    opacity: 0.1;
+}
+
+/*--------------------------------------------------------------
+12. Hero slider
+было 0.5
+--------------------------------------------------------------*/
+.so-widget-sow-hero .sow-slider-base ul.sow-slider-images li.sow-slider-image::after {
+    opacity: 0.1;
+}
+
+
+/********************************************************************
+1.Column
+*/
+.padding{display:inline-block;padding:10px}
+
+.row,.column{box-sizing:border-box}
+.row:after{clear:both}
+.row:before,.row:after{display:table;content:" "}
+.column{position:relative;margin-bottom:1em}
+@media (min-width:700px){
+	.column{float:left}
+	.column+.column{margin-left:1.6%}
+.column-1{width:6.86666666667%}
+.column-2{width:15.3333333333%}
+.column-3{width:23.8%}
+.column-4{width:32.2666666667%}
+.column-5{width:40.7333333333%}
+.column-6{width:49.2%}
+.column-7{width:57.6666666667%}
+.column-8{width:66.1333333333%}
+.column-9{width:74.59999999999999%}
+.column-10{width:83.0666666667%}
+.column-11{width:91.53333333330001%}
+.column-12{width:100%}
+}
+
+/*---------------------------------------
+2. Tabs
+-----------------------------------------*/
+/**
+ * Tabs
+ * https://codepen.io/mikestreety/pen/yVNNNm
+ */
+.tabs {
+	display: flex;
+	flex-wrap: wrap; /* make sure it wraps */
+}
+.tabs > label {
+	order: 1; /* Put the labels first */
+	display: block;
+	padding: 0.5rem 1rem;
+	margin-right: 0.1rem;
+	cursor: pointer;
+  background: rgb(232, 232, 232); /*#90CAF9;*/
+  font-weight: bold;
+  transition: background ease 0.2s;
+}
+.tabs .tab {
+  order: 99; /* Put the tabs last */
+  flex-grow: 1;
+	width: 100%;
+	display: none;
+  padding: 0.5rem;
+  background: #fff;
+}
+.tabs input[type="radio"] {
+	display: none;
+}
+.tabs > label:hover {
+	background-color: #90DFFF;
+}
+.tabs input[type="radio"]:checked + label {
+	background: #fff;
+	cursor: default;
+	border-style: solid;
+	border-width: 1px 1px 0px 1px;
+	border-color: lightgrey;	
+}
+.tabs input[type="radio"]:checked + label + .tab {
+	display: block;
+}
+
+@media (max-width: 45em) {
+  .tabs .tab,
+  .tabs > label {
+    order: initial;
+  }
+  .tabs > label {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 0.1rem;
+  }
+}
+/*--------------------------------------------------------------
+2.1. Single Trip - Tab регистрационной формы
+--------------------------------------------------------------*/
+.tabs > label.reg-form-tab {
+ background-color: orange;	
+}
+.tabs input[type="radio"]:checked + label.reg-form-tab {
+	color: orange;
+}
+.tabs > label.reg-form-tab:hover {
+	color: #fff;
+}
+/********************************************************************
+3.Contact
+*/
+.contact-us-wrap {
+	padding-top:30px;
+}
+.contact-us-column {
+	padding-left:15px;
+	padding-right:15px;
+	margin: 0;
+}
+address.vcard .org {
+	font-weight: bold;
+	font-size: 130%;
+}
+
+.communication-info, .communication-row, .communication-icon, .communication-data {
+	 display: block;
+}
+
+.communication-info {
+	display: table;
+}
+.communication-row {
+	display: table-row;
+	padding-bottom: 15px;
+}
+
+.communication-icon, .communication-data {
+	display: table-cell;
+}
+
+.communication-icon {
+	padding-right: 15px;
+}
+.communication-messenger {
+	font-size:30px;
+	padding-left: 0px;
+	padding-right: 25px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+/********************************************************************** 
+5.Counter
+*/
+.mc-wrapper {
+    display: table;
+  margin: 0 auto;
+}
+.mc-container {
+  display: table;
+  text-align: center;
+}
+
+.mc-centerhoriz {
+  display: inline-block;
+}
+
+.mc-circle {
+  display: table;
+  height: 80px;
+  width: 80px;
+  text-align: center;
+  background: blue;
+  border-radius: 100%;
+  margin: 10px;
+}
+
+/*
+  display: table;
+  width: 200px;
+  text-align: center;
+  background: blue;
+  margin: 0px;
+  */
+.mc-caption {
+
+  
+  font-size: 20px;
+ }
+
+
+.mc-content {
+  display: table-cell;
+  vertical-align: middle;
+}
+.mc-count {
+  font-size: 30px;
+ /* font-weight: bold;*/
+  color: white;
+  font-weight: bold;
+  color: white;
+}
+
+/*--------------------------------------------------------------
+4 Persons
+--------------------------------------------------------------*/
+.section-persons .thumb-summary-wrap:before {
+    content: "";
+    position: absolute;
+    top: auto;
+    width: 0;
+    height: 5px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #3a85eb82;
+    -webkit-transition: all 500ms ease 0s;
+    transition: all 500ms ease 0s;
+    z-index: -1;
+}
+
+.section-persons .thumb-summary-wrap:hover:before {
+    width:100%;
+}
+
+.section-persons .thumb-summary-wrap {
+    background: #fff;
+    padding: 0 0 35px;
+    position: relative;
+    z-index: 9;
+    -webkit-box-shadow: 0px 0px 32px 0px rgba(122,122,122,0.1);
+    -moz-box-shadow: 0px 0px 32px 0px rgba(122,122,122,0.1);
+    box-shadow: 0px 0px 32px 0px rgba(122,122,122,0.1);
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+    top:0;
+}
+.section-persons .thumb-summary-wrap:hover {
+    top: -3px;
+    box-shadow: 0px 0px 32px 0px rgba(122,122,122,0.4);
+}
+
+.section-persons  .person-item{
+    width: 100%;
+}
+
+/*
+.section-persons  .persons-col-1 .person-item{
+    width: 100%;
+}
+
+.section-persons  .persons-col-2 .person-item{
+    width: 50%;
+}
+
+.section-persons  .persons-col-3 .person-item{
+    width: 33.33%;
+}
+
+.section-persons  .persons-col-4 .person-item{
+    width: 25%;
+}
+*/
+/*widget in sidebar*/
+/*
+.sidebar .section-persons .person-item,
+#footer-widgets .section-persons .person-item{
+    width: 100%;
+    margin: 0;
+}
+*/
+
+.section-persons .person-item {
+    float: left;
+    padding: 25px 25px 15px 25px;
+    text-align: center;
+}
+
+.section-persons .person-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.section-persons .person-title a {
+    color: #222;
+}
+
+.section-persons p.person-position {
+    font-style: italic;
+    color: #aaa;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.section-persons .person-text-wrap {
+    position: relative;
+    margin-top: 30px;
+}
+.section-persons .person-item img {
+    transition: all 0.5s ease-in-out 0s;
+    background: #fff;
+}
+
+/*-------------------------------
+6. Trip
+--------------------------------*/
+/*------------------
+Trip Info
+--------------------*/
+.trip-info-item {
+}
+.trip-info-title {
+	font-weight: bold;
+}
+/*
+.trip-info-title::after {
+	content: ":";
+}
+*/
+.trip-info-value {
+	margin-left: 10px;
+}
+.old-price {
+	text-decoration: line-through;	
+}
+.sale-price {
+	font-weight: bold;	
+	color: red;
+}
+.trip-service-tab-wrap {
+	margin-bottom: 25px;
+}
+.trip-service-tab-subtitle {
+	margin-bottom: 5px;
+}
+.trip-service-tab-subtitle span {
+	margin-left: 10px;
+}
+#reg-form-button {
+	margin-top: 20px;	
+	margin-bottom: 20px;		
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+
+/*--------------------------------------------------------------
+18.6. Trips
+--------------------------------------------------------------*/
+.section-trips .thumb-summary-wrap:before {
+    content: "";
+    position: absolute;
+    top: auto;
+    width: 0;
+    height: 5px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #3a85eb82;
+    -webkit-transition: all 500ms ease 0s;
+    transition: all 500ms ease 0s;
+    z-index: -1;
+}
+.section-trips .thumb-summary-wrap:hover:before {
+    width:100%;
+}
+.section-trips .thumb-summary-wrap {
+    background: #fff;
+    padding: 0 0 35px;
+    position: relative;
+    z-index: 9;
+    -webkit-box-shadow: 0px 0px 32px 0px rgba(122,122,122,0.1);
+    -moz-box-shadow: 0px 0px 32px 0px rgba(122,122,122,0.1);
+    box-shadow: 0px 0px 32px 0px rgba(122,122,122,0.1);
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+    top:0;
+}
+.section-trips .thumb-summary-wrap:hover {
+    top: -3px;
+    box-shadow: 0px 0px 32px 0px rgba(122,122,122,0.4);
+}
+.section-trips  .trip-item{
+    width: 100%;
+}
+
+/*
+.section-trips  .trips-col-1 .trip-item{
+    width: 100%;
+}
+.section-trips  .trips-col-2 .trip-item{
+    width: 50%;
+}
+.section-trips  .trips-col-3 .trip-item{
+    width: 33.33%;
+}
+.section-trips  .trips-col-4 .trip-item{
+    width: 25%;
+}
+*/
+/*widget in sidebar*/
+/*
+.sidebar .section-trips .trip-item,
+#footer-widgets .section-trips .trip-item{
+    width: 100%;
+    margin: 0;
+}
+*/
+
+.section-trips .trip-item {
+    float: left;
+    padding: 25px 25px 15px 25px;
+    text-align: center;
+}
+.section-trips .trip-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.section-trips .trip-title a {
+    color: #222;
+}
+.section-trips p.trip-position {
+    font-style: italic;
+    color: #aaa;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.section-trips .trip-text-wrap {
+    position: relative;
+    margin-top: 30px;
+	padding: 0 15px;
+}
+.section-trips .trip-item img {
+    transition: all 0.5s ease-in-out 0s;
+    background: #fff;
+}
+
+/***************************
+ 7. Feature-Services
+	background-color: rgb(247,247,247);
+*/
+.aco-benefits-wrapper {
+	background-color: rgb(247,247,247);
+	
+	margin-left: -20.625px; 
+	margin-right: -20.375px; 
+	
+	padding-left: 20.625px; 
+	padding-right: 20.375px; 
+	
+	border-left: 0px; 
+	border-right: 0px;
+}
+.aco-benefits-wrapper .widget-title {
+	font-size:25px;
+}
+.heading-center .widget-title, 
+.heading-center .widget-subtitle {
+	text-align: center;
+	
+}
+
+/*---------------------------
+8. Price List
+-------------------------------*/
+.price-list-wrap table {
+	width: auto;
+    border-collapse: collapse;
+}
+.price-list-wrap thead  {
+}
+
+.price-list-wrap td, th {
+    border: 1px solid #dddddd;
+}
+.price-list-wrap th {
+	text-align: center;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:40px;
+    padding-right:40px;	
+}
+.price-list-wrap td {
+	text-align: center;
+    padding-top:8px;
+    padding-bottom:8px;
+}
+.price-list-wrap tbody tr:hover {background-color:#f5f5f5;}
+
+.price-list-wrap .new-price {
+	color: red;
+}
+
+/*----------------------------------------
+9. boulder-gym-schedule
+---------------------------------------*/
+#boulder-gym-schedule {
+	overflow-x:auto;
+}
+#boulder-gym-schedule tablse {
+  table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+}
+#boulder-gym-schedule .coach-name-col {
+  width:23%;
+}
+#boulder-gym-schedule .week-day-col {
+  width:11%;
+}
+
+#boulder-gym-schedule td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#boulder-gym-schedule tbody tr > :first-child {
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+#boulder-gym-schedule tbody {
+    vertical-align: text-top;
+}
+#boulder-gym-schedule table {
+	width: 100%;
+    border-collapse: collapse;
+}
+#boulder-gym-schedule thead  {
+    background-color: #dddddd;
+}
+#boulder-gym-schedule td, th {
+    border: 1px solid #dddddd;
+	
+}
+#boulder-gym-schedule th {
+	text-align: center;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:8px;
+    padding-right:8px;
+}
+
+#boulder-gym-schedule td {
+	text-align: center;
+    padding-top:8px;
+    padding-bottom:8px;
+    padding-left:5px;
+    padding-right:5px;
+}
+#boulder-gym-schedule tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+/*--------------------------------------------------------------
+10. Описание таксономии в архивах - cpt-archive.php и archive.php
+--------------------------------------------------------------*/
+.archive-tax-description {
+  padding-bottom:10px;
+}
+
+
+/*--------------------------------------------------------------
+18.17.2. Recent Trips
+--------------------------------------------------------------*/
+.widget_alpclub-odessa-recent-trips .recent-trips-section {
+    margin-top: 0;
+    float: left;
+}
+.widget_alpclub-odessa-recent-trips .recent-trips-item {
+    clear: both;
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+.widget_alpclub-odessa-recent-trips .recent-trips-title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
+.widget_alpclub-odessa-recent-trips  .recent-trips-item:first-child {
+    margin: 0;
+}
+.widget_alpclub-odessa-recent-trips .recent-trips-thumb {
+    float: left;
+    margin-right: 15px;
+}
+.widget_alpclub-odessa-recent-trips  .recent-trips-text-content {
+    display: table-cell;
+}
+.widget_alpclub-odessa-recent-trips  .recent-trips-title a {
+    color: #272727;
+}
+.widget_alpclub-odessa-recent-trips .recent-trips-meta {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.widget_alpclub-odessa-recent-trips .recent-trips-meta .posted-on::before{
+    display: inline-block;
+    font-family: FontAwesome;
+    height: 15px;
+    margin-right: 8px;
+    content:"\f017";
+    color: #666;
+    font-size: 12px;
+}
+/*--------------------------------------------------------------
+19.3 Social share
+--------------------------------------------------------------*/
+.gk-social-buttons a {
+    background: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    margin: 2px 4px;
+    overflow: hidden;
+    width: 30px;
+      
+}
+  
+.gk-social-buttons a:hover {
+    background: #ddd;
+    text-decoration: none;
+}
+  
+.gk-social-buttons a:before {
+    color: #fff;
+    font-family: FontAwesome;
+    padding: 12px 9px;
+}
+.gk-social-buttons .icon-twitter:before {
+    content: "\f099";
+}
+    
+.gk-social-buttons .icon-fb:before {
+    content: "\f09a";
+}
+  
+.gk-social-buttons .icon-gplus:before {
+    content: "\f0d5";
+}
+.gk-social-buttons .icon-whatsapp:before {
+    content: "\f232";
+}  
+.gk-social-buttons .icon-whatsapp {display:none;}
+
+.gk-social-buttons .icon-linkedin:before {
+    content: "\f0e1"; 
+}
+.gk-social-buttons .icon-email:before {
+    content: "\f003";
+} 
+.gk-social-buttons .icon-pinterest:before {
+    content: "\f0d2";
+} 
+
+.gk-social-buttons a:hover:before {
+    color: #000;
+}
+
+@media only screen and (max-width: 480px) {
+    .gk-social-buttons .icon-whatsapp {display:inline-block;}
+}
+
+/*--------------------------------------------------------------
+20.  Media Queries
+--------------------------------------------------------------*/
+@media only screen and (max-width:479px){
+
+.price-list-wrap table {
+	width: 100%;
+}
+.price-list-wrap th {
+    padding-left:10px;
+    padding-right:10px;	
+}
+
+}
