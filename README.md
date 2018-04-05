@@ -8,7 +8,18 @@
  2. Копирайт в футере.
  3. Настройка контактных данных: адрес, телефоны, почта и т.д.
 3. Программисту
-
+ 1. Хостинг
+ 2. Настройки Wordpress
+  1. Файлы \wp-admin\
+  2. Файл \wp-config.php
+ 3. Родительская тема
+  1. Замечания
+  2. Список изменений Файл: \wp-content\themes\surya-chandra-lite\inc\init.php
+   - Запрет автолоадера рекомендованных плагинов
+   - Запрет поддержки экспорта.
+   - Запрет на вывод Info.
+   - solved BUG: Загрузка Customizer только в Admin не работала
+ 4. Child Theme
 
 ## 1. Редактору
 
@@ -60,3 +71,64 @@
 
 
 ## 3. Программисту
+Содержание
+
+###  Хостинг
+PHP 7.2
+
+### Настройки Wordpress
+
+
+#### 1. Замечания
+Для улучшения производительности модифицированы файлы родительской темы.
+Все изменения отмечены комментарием:
+`// ATPTM`
+
+После обновления родительской темы эти модификации теряются. Надо восстановливать вручную.
+Модифицировання версия файла находится в  \wp-content\themes\alpclub-odessa\init.php
+Действия 
+- зайти по FTP
+- загрузить оба файла в текстовый редактор
+- если отличия только те, что перечислены ниже в 3.2, то перезаписать 
+файл родительской темы \wp-content\themes\surya-chandra-lite\inc\init.php 
+модифицированным файлом из дочерней \wp-content\themes\alpclub-odessa\init.php
+- если есть еще какие-то отличия, то зовите программиста
+
+### Список изменений Файл:  \wp-content\themes\surya-chandra-lite\inc\init.php
+
+#### Запрет автолоадера рекомендованных плагинов.
+Строка 27
+`// ATPTM require_once trailingslashit( get_template_directory() ) . 'lib/tgm/class-tgm-plugin-activation.php';`
+Строка 34
+`// ATPTM require_once trailingslashit( get_template_directory() ) . 'inc/hook/tgm.php';`
+
+#### Запрет поддержки экспорта.
+Строка 59
+`// ATPTM require_once trailingslashit( get_template_directory() ) . 'inc/supports/ocdi.php';`
+
+#### Запрет на вывод Info.
+Строки 64-67
+```
+// ATPTM if ( is_admin() ) {
+// ATPTM 	require_once trailingslashit( get_template_directory() ) . 'lib/info/class.info.php';
+// ATPTM 	require_once trailingslashit( get_template_directory() ) . 'lib/info/info.php';
+// ATPTM }
+```
+#### solved BUG: Загрузка Customizer только в Admin не работала
+Меню создается и через 2-3 секунды самороизвольно исчезает
+Из-за проблемы в реализации функции is_admin()
+Заменил is_admin() на is_customize_preview()
+
+Строки 48-49
+```
+ */ // ATPTM
+if (is_customize_preview()) { require_once trailingslashit( get_template_directory() ) . 'inc/customizer.php'; }
+```
+### Child Theme
+Запрет ревизий постов
+Файл \wp-content\themes\alpclub-odessa\functions.php
+```
+		// ATPTM
+		// Ограничение количества ревизий постов в базе данных: 0
+		add_filter( 'wp_revisions_to_keep', function ( $num, $post ) : int { return 0; }, 10, 2 );
+```  
