@@ -81,11 +81,11 @@
 `// ATPTM`
 
 После обновления родительской темы эти модификации теряются. Надо восстановливать вручную.
-Модифицировання версия файла находится в  `\wp-content\themes\alpclub-odessa\init.php`
+Модифицировання версия файла находится в  `\wp-content\themes\alpclub-odessa\surya-chandra-lite\init.php`
 Действия 
 1. зайти по FTP
 2. загрузить оба файла в текстовый редактор
-3. если отличия только те, что перечислены ниже в 3.2, то перезаписать файл родительской темы `\wp-content\themes\surya-chandra-lite\inc\init.php` модифицированным файлом из дочерней `\wp-content\themes\alpclub-odessa\init.php`
+3. если отличия только те, что перечислены ниже в 3.2, то перезаписать файл родительской темы `\wp-content\themes\surya-chandra-lite\inc\init.php` модифицированным файлом из дочерней `\wp-content\themes\alpclub-odessa\surya-chandra-lite\init.php`
 4. если есть еще какие-то отличия, то подправить код
 
 #### Список изменений Файл: \wp-content\themes\surya-chandra-lite\inc\init.php
