@@ -14,9 +14,9 @@
 
 ## 2. Картинки
 Размер картинки очень влияет на производительность сайла
--Редактировать в Adobe Photosho или Corel PhotoPaint
--Разрешение 72dpi
--Сохранять с оптимизацией для Web
+- Редактировать в Adobe Photosho или Corel PhotoPaint
+- Разрешение 72dpi
+- Сохранять с оптимизацией для Web
 
  Где | Разрешение | Размер файла 
  --- | --- | --- 
@@ -38,12 +38,12 @@
 
 
 ## 5. Шоткоды.
--[at_contact_phone_1]
--[at_contact_email_1]
--[at_contact_opening_time]
--[at_contact_vcard all]
--[at_contact_vcard addr]
--[at_contact_vcard comm]
+- [at_contact_phone_1]
+- [at_contact_email_1]
+- [at_contact_opening_time]
+- [at_contact_vcard all]
+- [at_contact_vcard addr]
+- [at_contact_vcard comm]
 
 
 ## 6. Оформление внешних ссылок
@@ -53,4 +53,4 @@
 2. rel="noopener nofollow" Безопасность, для SEO- робот-поисковик не уходит на чужой сайт
 
 Пример правильного оформления:
-\<a target="_blank" rel="noopener nofollow" href="http:\\example.com">Example</a>\
+\<a target="_blank" rel="noopener nofollow" href="http:\\example.com">Example\</a>
