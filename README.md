@@ -81,26 +81,29 @@
 `// ATPTM`
 
 После обновления родительской темы эти модификации теряются. Надо восстановливать вручную.
-Модифицировання версия файла находится в  \wp-content\themes\alpclub-odessa\init.php
+Модифицировання версия файла находится в  `\wp-content\themes\alpclub-odessa\init.php`
 Действия 
-- зайти по FTP
-- загрузить оба файла в текстовый редактор
-- если отличия только те, что перечислены ниже в 3.2, то перезаписать 
-файл родительской темы \wp-content\themes\surya-chandra-lite\inc\init.php 
-модифицированным файлом из дочерней \wp-content\themes\alpclub-odessa\init.php
-- если есть еще какие-то отличия, то зовите программиста
+1. зайти по FTP
+2. загрузить оба файла в текстовый редактор
+3. если отличия только те, что перечислены ниже в 3.2, то перезаписать файл родительской темы `\wp-content\themes\surya-chandra-lite\inc\init.php` модифицированным файлом из дочерней `\wp-content\themes\alpclub-odessa\init.php`
+4. если есть еще какие-то отличия, то подправить код
 
-#### Список изменений Файл:  \wp-content\themes\surya-chandra-lite\inc\init.php
+#### Список изменений Файл: \wp-content\themes\surya-chandra-lite\inc\init.php
 
 ##### Запрет автолоадера рекомендованных плагинов.
 Строка 27
-`// ATPTM require_once trailingslashit( get_template_directory() ) . 'lib/tgm/class-tgm-plugin-activation.php';`
+```
+// ATPTM require_once trailingslashit( get_template_directory() ) . 'lib/tgm/class-tgm-plugin-activation.php';
+```
 Строка 34
-`// ATPTM require_once trailingslashit( get_template_directory() ) . 'inc/hook/tgm.php';`
-
+```
+// ATPTM require_once trailingslashit( get_template_directory() ) . 'inc/hook/tgm.php';
+```
 ##### Запрет поддержки экспорта.
 Строка 59
-`// ATPTM require_once trailingslashit( get_template_directory() ) . 'inc/supports/ocdi.php';`
+```
+// ATPTM require_once trailingslashit( get_template_directory() ) . 'inc/supports/ocdi.php';
+```
 
 ##### Запрет на вывод Info.
 Строки 64-67
