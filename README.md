@@ -5,11 +5,11 @@
    - Картинки
    - Шоткоды.
    - Оформление внешних ссылок
-2. Администратору
+2. [Администратору](#to-admin)
    - Режим обслуживания, Maintenance Mode 
    - Копирайт в футере.
    - Настройка контактных данных
-3. Программисту
+3. [Программисту](#to-programmer)
    - Хостинг
    - Wordpress
    - Parent Theme
@@ -69,7 +69,7 @@
 `<a target="_blank" rel="noopener nofollow" href="http:\\example.com">Example</a>`
 
 
-## 2. Администратору
+## 2. Администратору<a name="to-admin"></a>
 ### Режим обслуживания Maintenance Mode 
 1. В админ-панели пункт зайти в меню "Appearance", подпункт "Customize"
 2. Выбрать раздел "Maintenance"
@@ -86,7 +86,7 @@
 /plugins/at-contact-info/inc/defaults.php
 
 
-## Программисту
+## Программисту<a name="to-programmer"></a>
 
 ###  Хостинг
 - PHP 7.2
