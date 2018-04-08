@@ -12,7 +12,7 @@
    - Wordpress
    - Parent Theme
      - Замечания
-     - Список изменений Файл: \wp-content\themes\surya-chandra-lite\inc\init.php
+     - Список изменений
    - Child Theme
 
 ## 1. Редактору<a name="to-editor"></a>
@@ -165,7 +165,8 @@ page-poezdka-v-bolgariju.jpg
 3. если отличия только те, что перечислены ниже в 3.2, то перезаписать файл родительской темы `\wp-content\themes\surya-chandra-lite\inc\init.php` модифицированным файлом из дочерней `\wp-content\themes\alpclub-odessa\surya-chandra-lite\init.php`
 4. если есть еще какие-то отличия, то подправить код
 
-#### Список изменений Файл: \wp-content\themes\surya-chandra-lite\inc\init.php
+#### Список изменений
+`Файл: \wp-content\themes\surya-chandra-lite\inc\init.php`
 
 ##### Запрет автолоадера рекомендованных плагинов.
 Строка 27
@@ -201,7 +202,7 @@ if (is_customize_preview()) { require_once trailingslashit( get_template_directo
 ```
 ### Child Theme
 Запрет ревизий постов
-Файл \wp-content\themes\alpclub-odessa\functions.php
+Файл `\wp-content\themes\alpclub-odessa\functions.php`
 ```
 		// ATPTM
 		// Ограничение количества ревизий постов в базе данных: 0
