@@ -149,7 +149,7 @@ person-klebanskij-vladimir.jpg
 Адрес, телефоны, почта, рабочее время и прочее.
 Через FTP отредактировать файл:
 
-`/plugins/at-contact-info/inc/defaults.php`
+`/themes/alpclub-odessa/include/customizer/defaults.php`
 
 
 ## Программисту<a name="to-programmer"></a>
