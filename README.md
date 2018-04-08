@@ -44,7 +44,7 @@
 ```
 	    
 Правильно:
-```
+```html
 <a href="/persons/klebanskij-vladimir">Вова</a>
 ```
        
@@ -180,40 +180,40 @@ person-klebanskij-vladimir.jpg
 
 ##### Запрет автолоадера рекомендованных плагинов.
 Строка 27
-```
+```php
 // ATPTM require_once trailingslashit( get_template_directory() ) . 'lib/tgm/class-tgm-plugin-activation.php';
 ```
 Строка 34
-```
+```php
 // ATPTM require_once trailingslashit( get_template_directory() ) . 'inc/hook/tgm.php';
 ```
 ##### Запрет поддержки экспорта.
 Строка 59
-```
+```php
 // ATPTM require_once trailingslashit( get_template_directory() ) . 'inc/supports/ocdi.php';
 ```
 
 ##### Запрет на вывод Info.
 Строки 64-67
-```
+```php
 // ATPTM if ( is_admin() ) {
 // ATPTM 	require_once trailingslashit( get_template_directory() ) . 'lib/info/class.info.php';
 // ATPTM 	require_once trailingslashit( get_template_directory() ) . 'lib/info/info.php';
 // ATPTM }
 ```
 ##### solved BUG: Загрузка Customizer только в Admin не работала
-Меню создается и через 2-3 секунды самороизвольно исчезает из-за проблемы в реализации функции is_admin().
-Заменил is_admin() на is_customize_preview().
+Меню создается и через 2-3 секунды самороизвольно исчезает из-за проблемы в реализации функции `is_admin()`.
+Заменил `is_admin()` на `is_customize_preview()`.
 
 Строки 48-49
-```
+```php
  */ // ATPTM
 if (is_customize_preview()) { require_once trailingslashit( get_template_directory() ) . 'inc/customizer.php'; }
 ```
 ### Child Theme
 Запрет ревизий постов
 Файл `\wp-content\themes\alpclub-odessa\functions.php`
-```
+```php
 		// ATPTM
 		// Ограничение количества ревизий постов в базе данных: 0
 		add_filter( 'wp_revisions_to_keep', function ( $num, $post ) : int { return 0; }, 10, 2 );
