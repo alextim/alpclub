@@ -212,8 +212,9 @@ person-klebanskij-vladimir.jpg
 if (is_customize_preview()) { require_once trailingslashit( get_template_directory() ) . 'inc/customizer.php'; }
 ```
 ### Child Theme
-Запрет ревизий постов
-Файл `\wp-content\themes\alpclub-odessa\functions.php`
+Запрет ревизий постов.
+Файл
+`\wp-content\themes\alpclub-odessa\functions.php`
 ```php
 		// ATPTM
 		// Ограничение количества ревизий постов в базе данных: 0
