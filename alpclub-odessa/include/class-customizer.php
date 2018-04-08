@@ -71,6 +71,7 @@ final class ACO_ThemeCustomizer {
 			]
 		];
 /*
+GoogleAnalytics
 		$sections['aco_ga_settings'] = [
 			'Google Analytics', 100,
 			[

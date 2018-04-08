@@ -272,7 +272,8 @@ final class Alpclub_Odessa_Theme {
 		foreach($items as $item) {
 			require_once ($include_dir . $item);
 		}
-		/*
+/*
+GoogleAnalytics
 		$items = [ 
 			'core.php',
 			'customizer/default.php',
@@ -484,6 +485,7 @@ remove_action( 'wp_head', 'wp_oembed_add_host_js' );
 add_action( 'after_setup_theme', 'disable_json_api' );
 */
 /*
+GoogleAnalytics
 if (absint(surya_chandra_get_option( 'ga_active' ))) {
 	add_action( absint(surya_chandra_get_option( 'ga_active' )) ? 'wp_footer' : 'wp_head', function (){
 		$trackingID = surya_chandra_get_option( 'ga_tracking_id' );
