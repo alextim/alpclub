@@ -132,12 +132,14 @@ page-poezdka-v-bolgariju.jpg
 
 ### Копирайт в футере.
 Через FTP отредактировать файл:
-/themes/alpclub-odessa/template-parts/footer/copyright.php
+
+`/themes/alpclub-odessa/template-parts/footer/copyright.php`
 
 ### Настройка контактных данных
 Адрес, телефоны, почта, рабочее время и прочее.
 Через FTP отредактировать файл:
-/plugins/at-contact-info/inc/defaults.php
+
+`/plugins/at-contact-info/inc/defaults.php`
 
 
 ## Программисту<a name="to-programmer"></a>
@@ -147,7 +149,7 @@ page-poezdka-v-bolgariju.jpg
 - Бесплатный сертификат Let's Encrypt - срок действия при месяца. Необходимо заказывать за 1 месяц до окончания спрока действия.
 - Редирект HTTP на HTTPS
 ###  Wordpress
-Изменены файлы .htacess и wp-config.php. Из соображений безопасности смотри отдельный документ.
+Изменены файлы `.htacess` и `wp-config.php`. Из соображений безопасности не опубликованы.
 ### Parent Theme
 #### Замечания
 Для улучшения производительности модифицированы файлы родительской темы.
