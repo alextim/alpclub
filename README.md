@@ -176,7 +176,8 @@ person-klebanskij-vladimir.jpg
 4. если есть еще какие-то отличия, то подправить код
 
 #### Список изменений
-`Файл: \wp-content\themes\surya-chandra-lite\inc\init.php`
+Файл:
+`\wp-content\themes\surya-chandra-lite\inc\init.php`
 
 ##### Запрет автолоадера рекомендованных плагинов.
 Строка 27
