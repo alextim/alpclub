@@ -100,7 +100,7 @@
 | Слайдер     | slider-??????.jpg       | 1920 x 850 | 90-120 |
 | Посты       | post-{slug}.jpg     | 800 x 500 |  |
 | Мероприятия | trip-{slug}.jpg       | 800 x 500 |  |
-| Люди        | person-{slug}.jpg |  |  |
+| Люди        | person-{slug}.jpg | 300 x 300 |  |
 
 {slug} = Ярлык
 
