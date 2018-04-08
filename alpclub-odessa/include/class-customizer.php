@@ -59,15 +59,15 @@ final class ACO_ThemeCustomizer {
 		$sections['aco_maintanence_settings'] = [
 			'Maitanence', 1,
 			[
-				['maintenance_mode', ['AT_Sanitize', 'sanitize_checkbox'], 'Maintenance mode', '', 'checkbox'],
+				['maintenance_mode', 'at_sanitize_checkbox', 'Maintenance mode', '', 'checkbox'],
 			]
 		];
 
 		$sections['aco_miscellaneous_settings'] = [
 			'Miscellaneous', 35,
 			[
-				['member_count',    'absint',                             'Member Count',   '', 'number', '', ['AT_Sanitize', 'validate_member_count']],
-				['show_breadcrumb', ['AT_Sanitize', 'sanitize_checkbox'], 'Show Breadcumb', '', 'checkbox'],
+				['member_count',    'absint',               'Member Count',   '', 'number'],
+				['show_breadcrumb', 'at_sanitize_checkbox', 'Show Breadcumb', '', 'checkbox'],
 			]
 		];
 /*
@@ -75,16 +75,16 @@ GoogleAnalytics
 		$sections['aco_ga_settings'] = [
 			'Google Analytics', 100,
 			[
-				['ga_active',      ['AT_Sanitize', 'sanitize_checkbox'], 'Activate',    '', 'checkbox'],
+				['ga_active',      'at_sanitize_checkbox', 'Activate',    '', 'checkbox'],
 				['ga_tracking_id', '',                                   'Tracking ID', '', 'text'],
-				['ga_in_footer',   ['AT_Sanitize', 'sanitize_checkbox'], 'In footer',   'Put "analytics.js" in footer', 'checkbox'],
-				['ga_async',       ['AT_Sanitize', 'sanitize_checkbox'], 'Async',       '"async" tag works only on modern browsers', 'checkbox'],
+				['ga_in_footer',   'at_sanitize_checkbox', 'In footer',   'Put "analytics.js" in footer', 'checkbox'],
+				['ga_async',       'at_sanitize_checkbox', 'Async',       '"async" tag works only on modern browsers', 'checkbox'],
 			]
 		];		
 */		
 		$this->create_sections( $wp_customize, $sections, $defaults );
 /*		
-		$panels = AT_Contact_Info_Customizer::get_panels();
+		$panels = AT_Contact_Info_Customizer::get_panels( $defaults );
 		foreach( $panels as $panel_key => $panel ) {
 			$wp_customize->add_panel( $panel_key, [
 				'title' => $panel[0],
@@ -135,98 +135,5 @@ GoogleAnalytics
 				$wp_customize->add_control( $setting_name, $args );
 			}		
 		}		
-	}
-}
-
-
-final class AT_Sanitize_Setting_Stub {
-	public $default;
-	public function __construct($default = '') { $this->default = $default; }
-}
-
-final class AT_Sanitize {
-	public static function sanitize_dropdown_pages( $page_id, $setting ) {
-		$page_id = absint( $page_id );
-		return ( 'publish' === get_post_status( $page_id ) ? $page_id : $setting->default );
-	}	
-	
-	public static function sanitize_checkbox( $checked  ) {
-		return ( ( isset( $checked ) && true === $checked ) ? true : false );
-	}	
-	
-	public static function sanitize_select( $input, $setting ) {
-		// Ensure input is a slug.
-		$input = sanitize_key( $input );
-
-		// Get list of choices from the control associated with the setting.
-		$choices = $setting->manager->get_control( $setting->id )->choices;
-
-		// If the input is a valid key, return it; otherwise, return the default.
-		return array_key_exists( $input, $choices ) ? $input : $setting->default;
-	}
-	public static function sanitize_phone( $value, $setting ) {
-		$san_value = preg_replace('/\D/', '', $value);
-		return (strlen($san_value) === 12) ? $san_value : $setting->default;		
-	}
-	public static function sanitize_skype( $value, $setting ) {
-		$san_value = preg_replace('/[^A-Za-z0-9\._]/', '', $value);
-		return preg_match('/^[a-z][a-z0-9\.,\-_]{5,31}$/i', $san_value) ? $san_value : $setting->default;		
-	}
-	public static function sanitize_telegram( $value, $setting ) {
-		$san_value = preg_replace('/[^A-Za-z0-9_]/', '', $value);
-
-		$n = strlen($san_value);
-		return ($n >= 5 && $n <= 32) ? $san_value : $setting->default;		
-	}
-	public static function sanitize_postal_index( $value, $setting ) {
-		$postal_index = absint($value);
-		
-		return (5 === strlen($postal_index)) ? $postal_index : $setting->default;
-	}
-	
-	public static function validate_member_count( $validity, $value ) {
-		$member_count = (int)$value;
-		if ( $member_count < 0 ) {
-			//$validity->add( 'member_count', 'Postal indexMember count has to be greate then 0'); 
-		} 
-		return $validity;
-	}	
-	
-	public static function validate_postal_index( $validity, $value ) {
-		$postal_index = (int)$value;
-		if ( $postal_index < 0 ) {
-			$validity->add( 'postal_index', 'Postal index has to be greate then 0.' );
-		} else if ($postal_index > 99999 ) {
-			$validity->add( 'postal_index', 'Postal index has to be less then 999999.' );
-		} else if ( strlen($postal_index) != 5 ) {
-			$validity->add( 'postal_index', 'Postal index has to be 5 symbol length.' );			
-		}
-		return $validity;
-	}		
-	public static function validate_skype_name( $validity, $value ) {
-		if ( !empty( $value ) ) {
-			if (!preg_match('/^[a-z][a-z0-9\.,\-_]{5,31}$/i', $name)) {
-				$validity->add( 'skype', ( 'Skype name is not valid.' ) );
-			}
-		}
-		$validity->add( 'skype', ( 'Skype name is not valid.' ) );
-		return $validity;
-	}
-		
-	public static function validate_phone_number( $validity, $value ) {
-		$value = trim($value);
-		if ( !empty( $value ) ) {
-			$tel = preg_replace('/[^0-9]/', '', $value);
-			if ( empty($tel) ) {
-				$validity->add( 'phone', ( 'Phone number is not valid.' ) );
-			} else if (strlen($tel) == 12) {
-				if (strpos( $value, '+') !== 0 ) {
-					$validity->add( 'phone', ( 'Phone number is not valid.' ) );
-				}
-			} else {
-				$validity->add( 'phone', ( 'Phone number is not valid.' ) );
-			}
-		}
-		return $validity;
 	}
 }

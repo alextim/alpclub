@@ -140,10 +140,10 @@ final class AT_Person_Admin_Metaboxes {
 						$sanitized_value = absint($_POST[$field]);
 						break;
 					case 'tel':
-						$sanitized_value = AT_Sanitize::sanitize_phone($_POST[$field], new AT_Sanitize_Setting_Stub());
+						$sanitized_value = at_sanitize_phone($_POST[$field], new AT_Sanitize_Setting_Stub());
 						break;					
 					case 'skype':
-						$sanitized_value = AT_Sanitize::sanitize_skype($_POST[$field], new AT_Sanitize_Setting_Stub());
+						$sanitized_value = at_sanitize_skype($_POST[$field], new AT_Sanitize_Setting_Stub());
 						break;					
 					case 'url':
 						$sanitized_value = esc_url_raw($_POST[$field]);

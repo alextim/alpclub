@@ -44,10 +44,11 @@ get_header(); ?>
 									echo '<p>' . $person_sport_level . '</p>';
 								} 
 								
+								$contact_info = new AT_Contact_Info();
 
-								echo AT_Contact_Info::get_email_a( $person_email, '', '<p><i class="fa fa-envelope-o">&nbsp;</i>', '</p>' );
-								echo AT_Contact_Info::get_tel_a(   $person_phone, '', '<p><i class="fa fa-phone">&nbsp;</i>',      '</p>' );
-								echo AT_Contact_Info::get_skype_a( $person_skype, '', '<p><i class="fa fa-skype">&nbsp;</i>',      '</p>', '', $person_skype );
+								echo $contact_info->get_email_a( $person_email, '', '<p><i class="fa fa-envelope-o">&nbsp;</i>', '</p>' );
+								echo $contact_info->get_tel_a(   $person_phone, '', '<p><i class="fa fa-phone">&nbsp;</i>',      '</p>' );
+								echo $contact_info->get_skype_a( $person_skype, '', '<p><i class="fa fa-skype">&nbsp;</i>',      '</p>', '', $person_skype );
 								
 								if ( !empty($person_facebook) ) : ?>	
 									<div class="social-links circle">

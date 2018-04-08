@@ -40,7 +40,6 @@ final class AT_Trip {
 		define( 'AT_TRIP_PLUGIN_FILE', __FILE__ );
 		define( 'AT_TRIP_PLUGIN_DIR', untrailingslashit( dirname( AT_TRIP_PLUGIN_FILE ) ) );
 		define( 'AT_TRIP_ABSPATH', dirname( __FILE__ ) . '/' );
-
 	}
 	
 	private function includes() {
@@ -54,8 +53,6 @@ final class AT_Trip {
 		require AT_TRIP_ABSPATH . '/inc/currencies.php';
 		require AT_TRIP_ABSPATH . '/inc/helpers.php';
 
-		require AT_TRIP_ABSPATH . '/inc/lib/at-num-form.php';
-		
 		if ( is_admin() ) {
 			require AT_TRIP_ABSPATH . '/inc/admin/admin-helper.php';
 			require AT_TRIP_ABSPATH . '/inc/admin/class-admin-metaboxes.php';

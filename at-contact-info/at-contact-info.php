@@ -11,43 +11,57 @@ License: GPLv2
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-require_once( plugin_dir_path( __FILE__ ) . '/inc/defaults.php' );
 
 //require_once( plugin_dir_path( __FILE__ ) . '/inc/class-customizer.php' );
 //require_once( plugin_dir_path( __FILE__ ) . '/inc/class-contact-info-widget.php' );
 
-add_shortcode( 'at_contact_phone_1',      function() { return AT_Contact_Info::get_tel_a(AT_Contact_Info::get_phone_1()); } );
-add_shortcode( 'at_contact_email_1',      function() { return AT_Contact_Info::get_email_a(AT_Contact_Info::get_email_1()); } );
-add_shortcode( 'at_contact_opening_time', function() { return AT_Contact_Info::get_opening_time(); } );
+add_shortcode( 'at_contact_phone_1',      function() : string  { 
+	$contact_info = new AT_Contact_Info();
+	return $contact_info->get_tel_a($contact_info->get_phone_1()); 
+} );
 
-add_shortcode( 'at_contact_vcard', function($atts = []) {
+add_shortcode( 'at_contact_email_1',      function() : string { 
+	$contact_info = new AT_Contact_Info();
+	return $contact_info->get_email_a($contact_info->get_email_1()); 
+} );
+
+add_shortcode( 'at_contact_opening_time', function() : string  { 
+	$contact_info = new AT_Contact_Info();
+	return $contact_info->get_opening_time(); 
+} );
+
+add_shortcode( 'at_contact_vcard', function($atts = []) : string {
 	$atts = array_change_key_case((array)$atts, CASE_LOWER);	
 
 	// override default attributes with user attributes
 	$wporg_atts = shortcode_atts([ 'part' => 'all', ], $atts);
 								 
-	$part = sanitize_text_field($wporg_atts['part']);	
-	return AT_Contact_Info::get_vcard($part);
+	$part = sanitize_text_field($wporg_atts['part']);
+	
+	$contact_info = new AT_Contact_Info();	
+	return $contact_info->get_vcard($part);
 } );
 
 final class AT_Contact_Info {
-	private static function get_option(string $name) : string {
-		//return surya_chandra_get_option( $name );
-		$defaults = at_contact_info_default_options();
-		return $defaults[$name];
-	}
-
-	private static function get_company_name()      : string { return self::get_option( 'company_name' ); }	
-	private static function get_street_address_1()  : string { return self::get_option( 'street_address_1' ); }	
-	private static function get_street_address_2()  : string { return self::get_option( 'street_address_2' ); }	
-	private static function get_city()              : string { return self::get_option( 'city' ); }	
-	private static function get_postal_index()      : string { return self::get_option( 'postal_index' ); }	
-	private static function get_country()           : string { return self::get_option( 'country' ); }	
+	private $defaults;
 	
-	public static function get_address_inline() : string {
+	public function __construct() { 
+		$this->defaults = apply_filters('contact_info_defaults', []); 
+	}
+	
+	private function get_option(string $name) : string { return isset($this->defaults[$name]) ? $this->defaults[$name] : ''; }
+
+	private function get_company_name()       : string { return $this->get_option( 'company_name' ); }	
+	private function get_street_address_1()   : string { return $this->get_option( 'street_address_1' ); }	
+	private function get_street_address_2()   : string { return $this->get_option( 'street_address_2' ); }	
+	private function get_city()               : string { return $this->get_option( 'city' ); }	
+	private function get_postal_index()       : string { return $this->get_option( 'postal_index' ); }	
+	private function get_country()            : string { return $this->get_option( 'country' ); }	
+	
+	public function get_address_inline() : string {
 		$output = '';
 		
-		$street_address_1 = self::get_street_address_1();
+		$street_address_1 = $this->get_street_address_1();
 		if ( !empty($street_address_1) ) {
 			if ( !empty($output) ) {
 				$output .= '&nbsp;';
@@ -55,7 +69,7 @@ final class AT_Contact_Info {
 			$output .= $street_address_1;
 		}
 		
-		$street_address_2 = self::get_street_address_2();
+		$street_address_2 = $this->get_street_address_2();
 		if ( !empty($street_address_2) ) {
 			if ( !empty($output) ) {
 				$output .= '&nbsp;';
@@ -63,7 +77,7 @@ final class AT_Contact_Info {
 			$output .= $street_address_2;
 		}
 		
-		$city = self::get_city();
+		$city = $this->get_city();
 		if ( !empty($city) ) {
 			if ( !empty($output) ) {
 				$output .= '&nbsp;';
@@ -71,7 +85,7 @@ final class AT_Contact_Info {
 			$output .= $city;
 		}	
 		
-		$country = self::get_country();
+		$country = $this->get_country();
 		if ( !empty($country) ) {
 			if ( !empty($city) ) {
 				$output .= ',';
@@ -84,19 +98,19 @@ final class AT_Contact_Info {
 		return $output;	
 	}
 	
-	public static function get_phone_1() : string  { return self::get_option( 'phone_1' ); }	
-	public static function get_email_1() : string  { return self::get_option( 'email_1' ); }
+	public function get_phone_1() : string  { return $this->get_option( 'phone_1' ); }	
+	public function get_email_1() : string  { return $this->get_option( 'email_1' ); }
 	
 	
-	public static function get_vcard( $part = 'all' ) : string {
+	public function get_vcard( $part = 'all' ) : string {
 		
 		if ( $part == 'all' ) {
-			$output = self::get_address();
-			$output .= self::get_communication();
+			$output = $this->get_address();
+			$output .= $this->get_communication();
 		} else if ( $part == 'addr' ) {
-			$output = self::get_address();
+			$output = $this->get_address();
 		} else if ( $part == 'comm' ) {
-			$output = self::get_communication();
+			$output = $this->get_communication();
 		} else {
 			$output = '';
 		}
@@ -104,14 +118,14 @@ final class AT_Contact_Info {
 		return ('' === $output) ? '' : '<address class="vcard">' . $output . '</address>';
 	}
 	
-	public static  function get_address() : string  {
+	public  function get_address() : string  {
 
-		$company_name 		= self::get_company_name();
-		$street_address_1	= self::get_street_address_1();
-		$street_address_2	= self::get_street_address_2();
-		$city				= self::get_city();
-		$postal_index		= self::get_postal_index();
-		$country			= self::get_country();
+		$company_name 		= $this->get_company_name();
+		$street_address_1	= $this->get_street_address_1();
+		$street_address_2	= $this->get_street_address_2();
+		$city				= $this->get_city();
+		$postal_index		= $this->get_postal_index();
+		$country			= $this->get_country();
 		
 		$output = '';
 
@@ -150,23 +164,23 @@ final class AT_Contact_Info {
 		return $output;
 	}
 	
-	public static function get_communication()  : string {
+	public function get_communication()  : string {
 
-		$phone_1 = self::get_phone_1();
-		$phone_2 = self::get_option( 'phone_2' );
-		$phone_3 = self::get_option( 'phone_3' );
-		$fax     = self::get_option( 'fax' );
+		$phone_1 = $this->get_phone_1();
+		$phone_2 = $this->get_option( 'phone_2' );
+		$phone_3 = $this->get_option( 'phone_3' );
+		$fax     = $this->get_option( 'fax' );
 		
-		$email_1 = self::get_email_1();
-		$email_2 = self::get_option( 'email_2' );
+		$email_1 = $this->get_email_1();
+		$email_2 = $this->get_option( 'email_2' );
 		
-		$skype	 = self::get_option( 'skype' );
-		$whatsapp= self::get_option( 'whatsapp' );
-		$tg	     = self::get_option( 'tg' );
-		$viber	 = self::get_option( 'viber' );
+		$skype	 = $this->get_option( 'skype' );
+		$whatsapp= $this->get_option( 'whatsapp' );
+		$tg	     = $this->get_option( 'tg' );
+		$viber	 = $this->get_option( 'viber' );
 		
 		
-		$url	 = self::get_option( 'url' );
+		$url	 = $this->get_option( 'url' );
 		
 		$output = '';
 		
@@ -175,9 +189,9 @@ final class AT_Contact_Info {
 			$before = '<div>';
 			$after = '</div>';
 			
-			$s1 =  self::get_tel_a( $phone_1, 'tel', $before, $after );
-			$s1 .=  self::get_tel_a( $phone_2, 'tel', $before, $after );
-			$s1 .=  self::get_tel_a( $phone_3, 'tel', $before, $after );
+			$s1 =  $this->get_tel_a( $phone_1, 'tel', $before, $after );
+			$s1 .=  $this->get_tel_a( $phone_2, 'tel', $before, $after );
+			$s1 .=  $this->get_tel_a( $phone_3, 'tel', $before, $after );
 			if (!empty($s1) ) {
 				$output =  '<div class="communication-row">' . 
 						'<div class="communication-icon"><i class="fa fa-phone"></i></div>' . 
@@ -193,7 +207,7 @@ final class AT_Contact_Info {
 			
 			$after = '</div></div>';
 
-			$output .=  self::get_tel_a( $fax, $before, $after, 'fax' );
+			$output .=  $this->get_tel_a( $fax, $before, $after, 'fax' );
 		} 
 
 	
@@ -201,9 +215,9 @@ final class AT_Contact_Info {
 			$before = '<div>';
 			$after = '</div>';
 
-			$s2 =  self::get_email_a( $email_1, 'email', $before, $after );
+			$s2 =  $this->get_email_a( $email_1, 'email', $before, $after );
 			
-			$s2 .=  self::get_email_a( $email_2, 'email', $before, $after );
+			$s2 .=  $this->get_email_a( $email_2, 'email', $before, $after );
 			
 			if (!empty($s2) ) {
 				$output .=  '<div class="communication-row">';
@@ -222,10 +236,10 @@ final class AT_Contact_Info {
 			$output .=  '<div class="communication-row">';
 			$output .=  '<div class="communication-icon"></div>';
 			
-			$output .=  self::get_skype_a( $skype, 'url', $before, $after);
-			$output .=  self::get_whatsapp_a( $whatsapp, 'url', $before, $after);
-			$output .=  self::get_telegram_a( $tg, 'url', $before, $after);
-			$output .=  self::get_viber_a( $viber, 'url', $before, $after);
+			$output .=  $this->get_skype_a( $skype, 'url', $before, $after);
+			$output .=  $this->get_whatsapp_a( $whatsapp, 'url', $before, $after);
+			$output .=  $this->get_telegram_a( $tg, 'url', $before, $after);
+			$output .=  $this->get_viber_a( $viber, 'url', $before, $after);
 
 			$output .=   '</div>';
 		} 
@@ -235,7 +249,7 @@ final class AT_Contact_Info {
 			$output .=  '<div class="communication-icon"><i class="fa fa-link"></i></div>';
 			$output .=  '<div  class="communication-data">';
 
-			$output .=  '<a class="url" href="' . esc_url($url) . '">' . self::ulr_to_domain($url). '</a>';  
+			$output .=  '<a class="url" href="' . esc_url($url) . '">' . $this->ulr_to_domain($url). '</a>';  
 
 			$output .=  '</div></div>';
 		} 		
@@ -243,7 +257,7 @@ final class AT_Contact_Info {
 		return ('' === $output) ? '' : '<div class="communication-info">' . $output . '</div>';
 	}
 	
-	public static function get_email_a( $content, $class = '', $before = '', $after = '' ) : string {
+	public function get_email_a( $content, $class = '', $before = '', $after = '' ) : string {
 		if ( !is_email( $content ) ) {
 			return '';
 		}
@@ -257,35 +271,35 @@ final class AT_Contact_Info {
 		return $before . sprintf( '<a %s href="%s">%s</a>', $class, $email_link, antispambot($content) ) . $after;
 	}
 	
-	public static function get_whatsapp_a( $content, $class, $before, $after ) : string  {
+	public function get_whatsapp_a( $content, $class, $before, $after ) : string  {
 		if ( empty( $content ) ) {
 			return '';
 		}
 		$content = '+' . $content;
-		return self::get_m_a( 'whatsapp', 'whatsapp://send?phone=%s', $content, $class, $before, $after );
+		return $this->get_m_a( 'whatsapp', 'whatsapp://send?phone=%s', $content, $class, $before, $after );
 	}
 	
-	public static function get_telegram_a( $content, $class, $before, $after ) : string {
-		return self::get_m_a( 'tg', 'tg://resolve?domain=%s', $content, $class, $before, $after, 'telegram' );
+	public function get_telegram_a( $content, $class, $before, $after ) : string {
+		return $this->get_m_a( 'tg', 'tg://resolve?domain=%s', $content, $class, $before, $after, 'telegram' );
 	}
 	
-	public static function get_viber_a( $content, $class, $before, $after ) : string {
+	public function get_viber_a( $content, $class, $before, $after ) : string {
 		if ( empty( $content ) ) {
 			return '';
 		}
 		if (!wp_is_mobile()) {
 			$content = '+' . $content;
 		} 
-		return self::get_m_a( 'viber', 'viber://add?number=%s', $content, $class, $before, $after, '', 'v' );
+		return $this->get_m_a( 'viber', 'viber://add?number=%s', $content, $class, $before, $after, '', 'v' );
 		
 	}
-	public static function get_skype_a( $content, $class, $before, $after, $fa = '', $text = '' ) : string {
+	public function get_skype_a( $content, $class, $before, $after, $fa = '', $text = '' ) : string {
 		if ( empty( $content ) ) {
 			return '';
 		}
-		return self::get_m_a( 'skype', 'skype:%s?call', $content, $class, $before, $after, $fa, $text );
+		return $this->get_m_a( 'skype', 'skype:%s?call', $content, $class, $before, $after, $fa, $text );
 	}		
-	private static function get_m_a( $protocol, $link_template, $content, $class, $before, $after, $fa = '', $text = '') : string {
+	private function get_m_a( $protocol, $link_template, $content, $class, $before, $after, $fa = '', $text = '') : string {
 		$link = sprintf( $link_template, $content );
 		
 		if ( !empty($class) ) {
@@ -302,7 +316,7 @@ final class AT_Contact_Info {
 		return $before . sprintf( '<a %s href="%s">%s</a>', $class, esc_url( $link, [$protocol] ), $text) . $after;
 	}
 	
-	public static function get_tel_a( $phone, $class = '', $before = '', $after = '', $href = '' ) : string {
+	public function get_tel_a( $phone, $class = '', $before = '', $after = '', $href = '' ) : string {
 		if ( empty($phone) ) {
 			return '';
 		}		
@@ -312,10 +326,10 @@ final class AT_Contact_Info {
 		if ( !empty($class) ) {
 			$class = ' class="' . $class . '" ';
 		}
-		return $before. '<a ' . $class . '  href="' . $href . ':+' . $phone . '">' . self::format_phone($phone) . '</a>' . $after;
+		return $before. '<a ' . $class . '  href="' . $href . ':+' . $phone . '">' . $this->format_phone($phone) . '</a>' . $after;
 	}
 	
-	private static function format_phone($phone) : string {
+	private function format_phone($phone) : string {
 		return sprintf( '+%s (%s) %s-%s-%s',
               substr($phone,  0, 3),
               substr($phone,  3, 2),
@@ -327,7 +341,7 @@ final class AT_Contact_Info {
 	//
 	//https://stackoverflow.com/questions/9364242/how-to-remove-http-www-and-slash-from-url-in-php
 	//
-	private static function ulr_to_domain ( $input  ) : string {
+	private function ulr_to_domain ( $input  ) : string {
 		// in case scheme relative URI is passed, e.g., //www.google.com/
 		$input = trim($input, '/');
 
@@ -342,12 +356,12 @@ final class AT_Contact_Info {
 		return preg_replace('/^www\./', '', $urlParts['host']);
 	}
 
-	public static function get_opening_time() : string {
+	public function get_opening_time() : string {
 		
 		$values = [];
 		
 		for ($i = 1; $i <= 7; $i++ ) {
-			$val = self::get_option( 'opening_time_' . $i );
+			$val = $this->get_option( 'opening_time_' . $i );
 			if ( isset($val) && !is_null($val) && !empty($val) )
 				$values[$i] = $val;
 		}

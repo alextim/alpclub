@@ -15,12 +15,11 @@ final class AT_Contact_Info_Customizer {
 	}
 	*/
 
-	public static function get_panels() : array {
-		$defaults = at_contact_info_default_options();
+	public static function get_panels(array $defaults) : array {
 
 		$validate_phone_cb = '';
 		$validate_skype_cb = '';
-		$sanitize_phone_cb = ['AT_Sanitize', 'sanitize_phone'];
+		$sanitize_phone_cb = 'at_sanitize_phone';
 		
 		$sections = [ 
 		  'aco_address_settings' => [
@@ -30,24 +29,24 @@ final class AT_Contact_Info_Customizer {
 					['street_address_1', '' , 'Street address 1', '', 'text'],
 					['street_address_2', '' , 'Street address 2', '', 'text'],
 					['city',             '' , 'City',             '', 'text'],
-					['postal_index', ['AT_Sanitize', 'sanitize_postal_index'], 'Postal Index', '', 'number'],
+					['postal_index', 'at_sanitize_postal_index', 'Postal Index', '', 'number'],
 					['country',          '',  'Country',          '', 'text'],
 			   ]
           ]	   
 		  'aco_communication_settings' => [
 				'Communication',
 				[
-					['phone_1', $sanitize_phone_cb,         'Phone 1',  '', 'text', $validate_phone_cb ],
-					['phone_2', $sanitize_phone_cb,         'Phone 2',  '', 'text', $validate_phone_cb ],
-					['phone_3', $sanitize_phone_cb,         'Phone 3',  '', 'text', $validate_phone_cb ],
-					['fax',     $sanitize_phone_cb,         'Fax',      '', 'text', $validate_phone_cb ],
-					['email_1', 'sanitize_email',	        'E-mail 1', '', 'email'],
-					['email_2', 'sanitize_email',	        'E-mail 2', '', 'email'],
-					['skype',   ['AT_Sanitize', 'sanitize_skype'], 'Skype',    '', 'text', $validate_skype_cb ],
-					['whatsapp',$sanitize_phone_cb,         'WhatsApp', '', 'text', $validate_phone_cb ],
-					['tg',      ['AT_Sanitize', 'sanitize_telegram'], 'Telegram', '', 'text'],
-					['viber',   $sanitize_phone_cb,	        'Viber',    '', 'text', $validate_phone_cb],
-					['url',     'esc_url_raw',              'URL',      '', 'url'],
+					['phone_1', $sanitize_phone_cb,      'Phone 1',  '', 'text', $validate_phone_cb ],
+					['phone_2', $sanitize_phone_cb,      'Phone 2',  '', 'text', $validate_phone_cb ],
+					['phone_3', $sanitize_phone_cb,      'Phone 3',  '', 'text', $validate_phone_cb ],
+					['fax',     $sanitize_phone_cb,      'Fax',      '', 'text', $validate_phone_cb ],
+					['email_1', 'sanitize_email',	     'E-mail 1', '', 'email'],
+					['email_2', 'sanitize_email',	     'E-mail 2', '', 'email'],
+					['skype',   'at_sanitize_skype',     'Skype',    '', 'text', $validate_skype_cb ],
+					['whatsapp',$sanitize_phone_cb,      'WhatsApp', '', 'text', $validate_phone_cb ],
+					['tg',      'at_sanitize_telegram',  'Telegram', '', 'text'],
+					['viber',   $sanitize_phone_cb,	     'Viber',    '', 'text', $validate_phone_cb],
+					['url',     'esc_url_raw',           'URL',      '', 'url'],
 				]	
           ],			   
 		  'aco_opening_time_settings' => [	  

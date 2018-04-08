@@ -37,9 +37,10 @@ function surya_chandra_customize_so_widgets_status( $active ) {
 
 
 function surya_chandra_render_contact_info() {
-	$contact_number  = AT_Contact_Info::get_phone_1();
-	$contact_email   = AT_Contact_Info::get_email_1();
-	$contact_address = AT_Contact_Info::get_address_inline();
+	$contact_info = new AT_Contact_Info();
+	$contact_number  = $contact_info->get_phone_1();
+	$contact_email   = $contact_info->get_email_1();
+	$contact_address = $contact_info->get_address_inline();
 
 	if ( empty( $contact_number ) && empty( $contact_email ) && empty( $contact_address ) ) {
 		return;
@@ -50,11 +51,11 @@ function surya_chandra_render_contact_info() {
 			<?php 
 			
 			if ( ! empty( $contact_number ) ) {
-				echo AT_Contact_Info::get_tel_a( $contact_number, '', '<li class="quick-call">', '</li>' );
+				echo $contact_info->get_tel_a( $contact_number, '', '<li class="quick-call">', '</li>' );
 			}
 			
 			if ( ! empty( $contact_email ) ) { 
-				echo AT_Contact_Info::get_email_a( $contact_email, '', '<li class="quick-email">', '</li>' );
+				echo $contact_info->get_email_a( $contact_email, '', '<li class="quick-email">', '</li>' );
 			}
 			
 			if ( ! empty( $contact_address ) ) {

@@ -21,27 +21,28 @@ while ( have_posts() ) : the_post();
 <div class="contact-us-wrap">
 	<div class="container">
 
-		<?php if (class_exists('AT_Contact_Info')) :?>
+		<?php if (class_exists('AT_Contact_Info')) :
+		    $contact_info = new AT_Contact_Info(); ?>
 			<div class="row">
 
 				<div class="column column-4">
 					<div class="contact-us-column">
 						<h3>Ждем Вас по адресу</h3>
-						<?php echo AT_Contact_Info::get_vcard('addr'); ?>
+						<?php echo $contact_info->get_vcard('addr'); ?>
 					</div>
 				</div>
 
 				<div class="column column-4">
 					<div class="contact-us-column">
 						<h3>Обращайтесь к нам</h3>
-						<?php echo AT_Contact_Info::get_vcard('comm'); ?>
+						<?php echo $contact_info->get_vcard('comm'); ?>
 					</div>
 				</div>
 
 				<div class="column column-4">
 					<div class="contact-us-column">
 						<h3>Рабочее время</h3>
-						<?php echo AT_Contact_Info::get_opening_time(); ?>
+						<?php echo $contact_info->get_opening_time(); ?>
 					</div>
 				</div>
 

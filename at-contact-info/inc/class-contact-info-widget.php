@@ -29,20 +29,21 @@ class Alpclub_Odessa_Contact_Info_Widget extends WP_Widget {
 	
 	public function widget( $args, $instance ) {
 		echo $args['before_widget'];
+		$contact_info = new AT_Contact_Info()
 		?>
 		<div class="container">
 			<div class="row">
 			
 				<div class="column column-4">
-					<?php echo AT_Contact_Info_Contact::get_address(); ?>
+					<?php echo $contact_info->get_address(); ?>
 				</div>		
 				
 				<div class="column column-4">
-					<?php echo AT_Contact_Info_Contact::get_communication(); ?>
+					<?php echo $contact_info->get_communication(); ?>
 				</div>
 				
 				<div class="column column-4">
-					<?php echo AT_Contact_Info_Contact::get_opening_time(); ?>
+					<?php echo $contact_info->get_opening_time(); ?>
 				</div>
 				
 			</div>

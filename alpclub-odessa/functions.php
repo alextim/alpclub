@@ -67,6 +67,10 @@ final class Alpclub_Odessa_Theme {
 		add_filter( 'surya_chandra_filter_default_theme_options', function( $defaults ) : array {
 			return array_merge ($defaults, _get_aco_theme_default_options());
 		} );
+		add_filter ( 'contact_info_defaults', function() : array {
+			return _get_aco_theme_default_options();
+		});
+		
 	}
 
 	// Custom Post types: person, trip
