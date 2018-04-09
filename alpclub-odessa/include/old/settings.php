@@ -358,11 +358,11 @@ public function text_sanitize_cb( $input ) {
 			<?php 
 			if( isset( $_GET[ 'tab' ] ) ) {
 				$active_tab = $_GET[ 'tab' ];
-			} else if( $active_tab == 'address_options' ) {
+			} elseif( $active_tab == 'address_options' ) {
 				$active_tab = 'address_options';
-			} else if( $active_tab == 'communication_options' ) {
+			} elseif( $active_tab == 'communication_options' ) {
 				$active_tab = 'communication_options';
-			} else if( $active_tab == 'social_options' ) {
+			} elseif( $active_tab == 'social_options' ) {
 				$active_tab = 'social_options';
 			} else {
 				$active_tab = 'communication_options';
@@ -382,7 +382,7 @@ public function text_sanitize_cb( $input ) {
 					if( $active_tab == 'address_options' ) {
 						settings_fields( $this->address_options_name );
 						do_settings_sections( $this->address_options_name );
-					} else if( $active_tab == 'communication_options' ) {
+					} elseif( $active_tab == 'communication_options' ) {
 						settings_fields( $this->communication_options_name );
 						do_settings_sections( $this->communication_options_name );
 					} else {

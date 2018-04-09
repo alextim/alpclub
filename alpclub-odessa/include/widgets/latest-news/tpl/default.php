@@ -19,12 +19,12 @@ if ( 3 === $sticky_filter ) {
 	if ( $exclude_post_id > 0 ) {
 		if ( empty($sticky) ) {
 			$sticky[] = $exclude_post_id;
-		} else if (!in_array($exclude_post_id, $sticky)) {
+		} elseif ( !in_array($exclude_post_id, $sticky) ) {
 			$sticky[] = $exclude_post_id;
 		}
 	}
 	$qargs['post__not_in'] = $sticky;
-} else if ( 2 === $sticky_filter ) {
+} elseif ( 2 === $sticky_filter ) {
 	
 	$sticky = get_option( 'sticky_posts' );
 	rsort( $sticky );
@@ -38,13 +38,13 @@ if ( 3 === $sticky_filter ) {
 	$qargs['post__in'] = $sticky;
 	$qargs['ignore_sticky_posts'] = true;
 	
-} else  if ( 1 === $sticky_filter ) {
+} elseif ( 1 === $sticky_filter ) {
 	if ( $exclude_post_id > 0 ) {
 		$qargs['post__not_in'] = [$exclude_post_id ];
 	}
 	$qargs['ignore_sticky_posts'] = true;
 	
-} else  if ( 0 === $sticky_filter ) {
+} elseif ( 0 === $sticky_filter ) {
 	if ( $exclude_post_id > 0 ) {
 		$qargs['post__not_in'] = [$exclude_post_id ];
 	}	

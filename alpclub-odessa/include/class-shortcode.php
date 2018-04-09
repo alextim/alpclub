@@ -183,7 +183,7 @@ final class Alpclub_Odessa_Shortcodes {
 				'Сертифицированные инструктора ФАиС', 
 				'fa-thumbs-o-up', 
 				'forestgreen',
-				'/alp-staff',
+				'/person-type/alpinism-instructor',
 			],
 			[
 				'Путешествия', 

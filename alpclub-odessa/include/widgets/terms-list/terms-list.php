@@ -71,10 +71,10 @@ final class Alpclub_Odessa_Terms_List_Widget extends WP_Widget {
 
 	private function sanitize_choice($value, $choices) {
 		if (empty($value)) {
-			if ( !empty($choices) && count($choices) > 0) {
+			if ( !empty($choices) && count($choices) > 0 ) {
 				$value = key(current($choices));
 			}
-		} else if ( !empty($choices) && count($choices) > 0) {
+		} elseif ( !empty($choices) && count($choices) > 0 ) {
 			if (!array_key_exists($value , $choices)) {
 				$value = key(current($choices));
 			}

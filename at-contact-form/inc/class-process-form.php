@@ -133,7 +133,7 @@ final class AT_Process_ContactForm {
 		if( empty( $email ) ) {
 			$this->set_field_error('email', 'email_required');
 			$this->hasError = true;
-		} else if (!is_email($email)) {
+		} elseif ( !is_email($email) ) {
 			$this->set_field_error('email', 'email_not_valid');
 			$this->hasError = true;
 		} else {
@@ -180,7 +180,7 @@ final class AT_Process_ContactForm {
 			if ( empty($recaptcha_response) ) {
 				$this->info_message = self::get_message_text('empty_capture');	
 				$this->hasError = true;
-			} else if ( !$this->reCAPTCHA->isValid($recaptcha_response) ) {
+			} elseif ( !$this->reCAPTCHA->isValid($recaptcha_response) ) {
 				$this->info_message = self::get_message_text('ivalid_capture');	
 				$this->hasError = true;	
 				var_dump( $this->reCAPTCHA->getErrorCodes() );				

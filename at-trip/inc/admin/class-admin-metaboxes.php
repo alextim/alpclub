@@ -113,11 +113,21 @@ class AT_Trip_Admin_Metaboxes {
 	
 	function render_registration_form_callback( $post ) {
 		$helper = new AT_Trip_Trip( $post );
-		$trip_registration_form	   = $helper->get_registration_form();
+		$trip_registration_enabled  = $helper->get_registration_enabled();
+		$trip_registration_end_date	= $helper->get_registration_end_date();
+		$trip_registration_form	    = $helper->get_registration_form();
 		?>
 		
 		<table>
 			<tr>
+				<td><label for="trip_registration_enabled">Регистрация разрешена</label></td>
+				<td><input type="checkbox" name="trip_registration_enabled" id="trip-registration-enabled" value="yes" <?php echo $trip_registration_enabled ? 'checked' : ''; ?>></td>
+			</tr>			
+			<tr class="trip-registration-row" style="display:<?php echo ( 1 === $trip_registration_enabled ) ? 'table-row' : 'none'; ?>">
+				<td><label for="trip_registration_end_date">Дата окончания регистрации</label></td>
+				<td><input type="text" name="trip_registration_end_date" id="trip-registration-end-date" value="<?php echo $trip_registration_end_date; ?>"></td>
+			</tr>
+			<tr class="trip-registration-row" style="display:<?php echo ( 1 === $trip_registration_enabled ) ? 'table-row' : 'none'; ?>">
 				<td><label for="trip_registration_form">Ссылка</label></td>
 				<td><input size="80" maxlength="128" type="url" name="trip_registration_form" value="<?php echo $trip_registration_form; ?>"><br/><i>Допускаются ссылки только на Google Forms</i></td>
 			</tr>
@@ -318,8 +328,18 @@ class AT_Trip_Admin_Metaboxes {
 			}
 		}
 		update_post_meta( $post_id, 'trip_enable_sale', $enable_sale );
-
 		
+		
+		$registration_enabled = 0;
+		if ( isset( $_POST['trip_registration_enabled'] ) ) {
+			$registration_enabled = sanitize_text_field( wp_unslash( $_POST['trip_registration_enabled'] ) );
+			if ( 'yes' === $registration_enabled ) {
+				$registration_enabled = 1;
+			}
+		}
+		update_post_meta( $post_id, 'trip_registration_enabled', $registration_enabled );
+
+
 		$fields = [
 			['trip_start_date', 'time'],
 			['trip_end_date',   'time'],
@@ -340,12 +360,13 @@ class AT_Trip_Admin_Metaboxes {
 			['trip_gallery','html'],
 			
 			
-			['trip_highest_point',			'int'],
-			['trip_technical_difficulty',	'int'],
-			['trip_fitness_level',			'int'],
-			['trip_group_size',		    	'int'],
+			['trip_highest_point',		   'int'],
+			['trip_technical_difficulty',  'int'],
+			['trip_fitness_level',		   'int'],
+			['trip_group_size',		       'int'],
 			
-			['trip_registration_form',	   	'reg_form_url'],
+			['trip_registration_end_date', 'time'],
+			['trip_registration_form',	   'reg_form_url'],
 			
 		];
 		// Store data in post meta table if present in post data

@@ -80,28 +80,42 @@ final class Alpclub_Odessa_Theme {
 	//	$post_type = $wp_query->query_vars['post_type'];
 	function modify_cpt_query( $query ) {
 		global $wp_the_query;
-		if ( $query === $wp_the_query && count($query->query) > 0 && isset($query->query['post_type']) ) {
-			if ( AT_TRIP_POST_TYPE === $query->query['post_type'] ) {
-				if ( is_admin() ) {
-					if( 'trip_price' === $query->get( 'orderby') ) {
-						$query->set('meta_key','trip_price');
-						$query->set('orderby','meta_value_num');								
-					}						
-				} else {
-					$query->set( 'posts_per_page', AT_TRIP_ITEMS_PER_PAGE );
-				}
-				
-			} else if ( AT_PERSON_POST_TYPE === $query->query['post_type'] ) {
-				if ( is_admin() ) {
-					if( 'person_sort_order' === $query->get( 'orderby') ) {
-						$query->set('meta_key','person_sort_order');
-						$query->set('orderby','meta_value_num');								
+		if ( $query === $wp_the_query && count($query->query) > 0 ) {
+			
+			if ( isset($query->query['post_type']) ) {
+				if ( AT_TRIP_POST_TYPE === $query->query['post_type'] ) {
+					if ( is_admin() ) {
+						if( 'trip_price' === $query->get( 'orderby') ) {
+							$query->set( 'meta_key', 'trip_price' );
+							$query->set( 'orderby', 'meta_value_num' );								
+						}						
+					} else {
+						$query->set( 'posts_per_page', AT_TRIP_ITEMS_PER_PAGE );
 					}
-				} else {
-					$query->set( 'posts_per_page', AT_PERSON_ITEMS_PER_PAGE );
+					
+				} elseif ( AT_PERSON_POST_TYPE === $query->query['post_type'] ) {
+					if ( is_admin() ) {
+						if( 'person_sort_order' === $query->get( 'orderby') ) {
+							$query->set( 'meta_key','person_sort_order' );
+							$query->set( 'orderby','meta_value_num' );								
+						}
+					} else {
+						$query->set( 'posts_per_page', AT_PERSON_ITEMS_PER_PAGE );
+						$query->set( 'meta_key','person_sort_order' );
+						$query->set( 'orderby','meta_value_num' );						
+						$query->set( 'order', 'DESC' );
+					}
+					//add_filter('posts_orderby', function($orderby) { return '(wp_posts.person_sort_order+0) DESC'; } );
 				}
-				//add_filter('posts_orderby', function($orderby) { return '(wp_posts.person_sort_order+0) DESC'; } );
-			}		
+			} elseif ( $query->is_tax ) {
+				if ( isset($query->query['person_type']) ) {
+					$query->set( 'posts_per_page', AT_PERSON_ITEMS_PER_PAGE );
+					$query->set( 'meta_key','person_sort_order' );
+					$query->set( 'orderby','meta_value_num' );						
+					$query->set( 'order', 'DESC' );
+				} elseif ( isset($query->query['activity']) ) {
+					$query->set( 'posts_per_page', AT_TRIP_ITEMS_PER_PAGE );					}
+			}			
 		}
 		return $query;
 	}

@@ -7,8 +7,7 @@ Template Post Type: trip, person
 get_header();
 if ( is_tax() ) {
 	$queried_object = get_queried_object();
-	if ( $queried_object ) {
-		if (!empty($queried_object->description)) {?>
+	if ( $queried_object && !empty($queried_object->description)) {?>
 
 			<div class="container">
 				<div class="archive-tax-description">
@@ -16,7 +15,7 @@ if ( is_tax() ) {
 				</div>
 			</div>
 			
-	<?php }
+	<?php 
 	}			
 } 
 ?>
@@ -29,9 +28,9 @@ if ( is_tax() ) {
 	if ( have_posts() ) :
 	
 		$cpt = get_post_type();
-		if (AT_TRIP_POST_TYPE === $cpt) {
+		if ( AT_TRIP_POST_TYPE === $cpt ) {
 			$items_per_row = AT_TRIP_ITEMS_PER_ROW;
-		} else if (AT_PERSON_POST_TYPE === $cpt) {
+		} elseif ( AT_PERSON_POST_TYPE === $cpt ) {
 			$items_per_row = AT_PERSON_ITEMS_PER_ROW;
 		} else {
 			echo 'UNKNOWN post_type = "' . $cpt . '"';

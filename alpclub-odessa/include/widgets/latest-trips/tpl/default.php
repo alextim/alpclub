@@ -14,17 +14,16 @@ $qargs = [
 ];
 
 $sticky_filter = absint($instance['sticky_filter']);
-if ( 0 == $sticky_filter ) {
+if ( 0 === $sticky_filter ) {
 	//
-} else  if ( 1 == $sticky_filter ) {
+} elseif ( 1 === $sticky_filter ) {
 	$qargs['orderby']  = 'meta_value';
 	$qargs['meta_key'] = 'trip_sticky';
 	$qargs['order']    = 'DESC';
-} else if ( 2 == $sticky_filter ) {
+} elseif ( 2 === $sticky_filter ) {
 	 $qargs['meta_key'] = 'trip_sticky';
 	 $qargs['meta_value'] = 1;
-}	
-else if ( 3 == $sticky_filter ) {
+} elseif ( 3 === $sticky_filter ) {
 	 $qargs['meta_key'] = 'trip_sticky';
 	 $qargs['meta_value'] = 1;
 	 $qargs['meta_compare'] = '!=';

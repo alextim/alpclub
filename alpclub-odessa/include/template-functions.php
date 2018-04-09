@@ -10,7 +10,7 @@ function aco_get_term_image($term_id, $size) {
 		return $image_data[0];
 	}
 }
-function aco_get_social_buttons() {
+function aco_get_social_buttons() : string {
 
 	$url = urlencode(get_the_permalink());
 	$title = htmlspecialchars(urlencode(html_entity_decode(get_the_title(), ENT_COMPAT, 'UTF-8')), ENT_COMPAT, 'UTF-8'); 

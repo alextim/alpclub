@@ -1,5 +1,9 @@
 (function( $ ) {
-	
+		$('#trip-registration-end-date').datepicker({
+			//language: 'en',
+			minDate: new Date()
+		});
+		
 		$('#trip-start-date').datepicker({
 			//language: 'en',
 			minDate: new Date()
@@ -100,6 +104,14 @@
 			$('.trip-sale-price-row').css({ 'display': 'table-row' });
 		} else {
 			$('.trip-sale-price-row').css({ 'display': 'none' });
+		}
+	});
+	
+	$(document).on('click', '#trip-registration-enabled', function() {
+		if ($(this).is(':checked')) {
+			$('.trip-registration-row').css({ 'display': 'table-row' });
+		} else {
+			$('.trip-registration-row').css({ 'display': 'none' });
 		}
 	});
 

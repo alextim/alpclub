@@ -37,7 +37,7 @@ final class AT_Trip_Trip {
 	public function get_sale_price()          : int    { return $this->get_field_int( 'trip_sale_price' ); }
 
 	public function get_highest_point()		  : int    { return $this->get_field_int( 'trip_highest_point' ); }
-	public function get_technical_difficulty(): int      { return $this->get_field_int( 'trip_technical_difficulty' ); }
+	public function get_technical_difficulty(): int    { return $this->get_field_int( 'trip_technical_difficulty' ); }
 	public function get_fitness_level()		  : int    { return $this->get_field_int( 'trip_fitness_level' ); }
 	public function get_group_size()		  : int    { return $this->get_field_int( 'trip_group_size' ); }
 
@@ -54,7 +54,9 @@ final class AT_Trip_Trip {
 	public function get_additional_info()   : string { return $this->get_field_raw( 'trip_additional_info' ); }
 	public function get_gallery()		    : string { return $this->get_field_raw( 'trip_gallery' ); }
 
-	public function get_registration_form() : string { return $this->get_field_url( 'trip_registration_form' ); }
+	public function get_registration_enabled()  : int    { return $this->get_field_int( 'trip_registration_enabled' ); }
+	public function get_registration_end_date() : string { return $this->get_field_date( 'trip_registration_end_date' ); }
+	public function get_registration_form()     : string { return $this->get_field_url( 'trip_registration_form' ); }
 	
 	private function get_field_raw( string $field ) : string {	
 		if ( isset( $this->post_meta[$field][0] ) && '' !== $this->post_meta[$field][0] ) {
@@ -211,6 +213,16 @@ final class AT_Trip_Trip {
 	}
 	
 	function print_registration_form(string $title, string $id = '', string $class = '') {
+		if ( !$this->get_registration_enabled() ) {
+			return;
+		}
+		$end_date = $this->get_registration_end_date();
+		if ( !empty($end_date) ) {
+			if (strtotime($end_date) < time() ) {
+				return;
+			}
+		}
+
 		$s = $this->get_registration_form();
 		
 		if ( !empty($s) ) {

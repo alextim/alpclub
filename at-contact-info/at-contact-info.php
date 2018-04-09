@@ -104,18 +104,18 @@ final class AT_Contact_Info {
 	
 	public function get_vcard( $part = 'all' ) : string {
 		
-		if ( $part == 'all' ) {
+		if ( $part === 'all' ) {
 			$output = $this->get_address();
 			$output .= $this->get_communication();
-		} else if ( $part == 'addr' ) {
+		} elseif ( $part === 'addr' ) {
 			$output = $this->get_address();
-		} else if ( $part == 'comm' ) {
+		} elseif ( $part === 'comm' ) {
 			$output = $this->get_communication();
 		} else {
 			$output = '';
 		}
 		
-		return ('' === $output) ? '' : '<address class="vcard">' . $output . '</address>';
+		return ('' !== $output) ? '<address class="vcard">' . $output . '</address>' : '';
 	}
 	
 	public  function get_address() : string  {

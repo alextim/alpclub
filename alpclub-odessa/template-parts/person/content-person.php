@@ -25,7 +25,7 @@
 			<ul>
 			<?php $fb = $helper->get_facebook(); ?>
 			<?php if (! empty($fb) ) :?>
-					<li><a href="<?php echo $fb; ?>"><span class="sow-icon-fontawesome" data-sow-icon=""></span></a></li>
+					<li><a target="_blank" rel="noopener nofollow" href="<?php echo $fb; ?>"><span class="sow-icon-fontawesome" data-sow-icon=""></span></a></li>
 			<?php endif; ?>
 				<!--
 				<li><a href="http://twitter.com"><span class="sow-icon-fontawesome" data-sow-icon=""></span></a></li>
