@@ -257,10 +257,10 @@ if (is_customize_preview()) { require_once trailingslashit( get_template_directo
 ## 4. TO-DO<a name="to-do"></a>
 - [ ] Отказаться от Google Forms
   - Достоинство форм
-    - Easy
+    - Уже работает и Easy
   - Недостатки
     - Невозможно автоматически собрать все в один файл
-    - Не будет ни рассылки  ни подпмски
+    - Не будет автоматом ни рассылки  ни подписки
     - Не будет согласования Membership
 - [ ] Подписка и рассылка
 - [ ] Membership
