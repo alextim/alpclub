@@ -255,13 +255,14 @@ if (is_customize_preview()) { require_once trailingslashit( get_template_directo
 		add_filter( 'wp_revisions_to_keep', function ( $num, $post ) : int { return 0; }, 10, 2 );
 ```  
 ## 4. TO-DO<a name="to-do"></a>
-- [ ] Google Forms
-  - Pros
+- [ ] Отказаться от Google Forms
+  - Достоинство форм
     - Easy
-  - Cons
+  - Недостатки
     - Невозможно автоматически собрать все в один файл
     - Не будет ни рассылки  ни подпмски
     - Не будет согласования Membership
 - [ ] Подписка и рассылка
 - [ ] Membership
+- [ ] Переделать Logo и favicon. Лучшее качество и меньший размер. Уже есть исходник в векторном формате.
 
