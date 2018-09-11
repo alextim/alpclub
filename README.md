@@ -21,8 +21,8 @@
    - Child Theme
 4. [TO-DO](#to-do)   
 
-## 1. Редактору<a name="to-editor"></a>
-### Заполнение Новостей (Постов)<a name="to-posts"></a>
+## <a name="to-editor"></a>1. Редактору
+### <a name="to-posts"></a>Заполнение Новостей (Постов)
 В Admin панели пункт меню "Записи" -> "Добавить новую".
 
 Шесть элементов, которые нужно заполнить для полноценного оформления поста.
@@ -158,7 +158,7 @@ person-klebanskij-vladimir.jpg
 [at_contact_vcard comm]
 ```
 
-### Форма "Контакты"<a name="to-contact-form-e"></a>
+### <a name="to-contact-form-e"></a>Форма "Контакты"
 Все отправленное через контактную форму посетителями сайта можно просмотреть через адмиин-панель пункт меню "AT Contact Form".
 
 - "Messages" - список посланных сообщений в хронологическом порядке.
@@ -166,7 +166,7 @@ person-klebanskij-vladimir.jpg
 
 Дополнительно результаты могут дублироваться на почту (см. раздел для Администратора)
 
-### Home (Домой — Главная страница)<a name="to-home-page"></a>
+### <a name="to-home-page"></a>Home (Домой — Главная страница)
 Для редактирования "Главной страницы" зайдите в Admin панели в пункт меню "Страницы" -> ссылка "Изменить" в странице "Домой — Главная страница"
 
 Главная страница состоит из 5 строк
@@ -182,31 +182,31 @@ person-klebanskij-vladimir.jpg
 Для сохранения изменений нажмитек кнопку "Выполнено".
 
 
-## 2. Администратору<a name="to-admin"></a>
-### **Важное**<a name="to-important"></a>
+## <a name="to-admin"></a>2. Администратору
+### <a name="to-important"></a>**Важное**
 - Не забывайте регулярно делать бекап файлов сайта и самой базы данных. Имейте несколько бэкапав, сохраняйте бэкап по датам. Это единственное, что может помочь Вам восстановить сайт. Не будьте наивны - рано или поздно катастрофа произойдет.
 - Обновляйте плагины и ядро Вордпреса.
 - Оптимизируйте базу данных - удаляйте драфты, подвешенные записи и т.д. в WP-Optimize.
 - После обновлений, редактирования Home page очищайте кэш - "Clear Cache"
 - Минимизируйте права пользователей, избегайте предоставления пользователям прав администратора, создавайте отдельных пользователей для разных людей
-### Режим обслуживания Maintenance Mode<a name="to-maintenance"></a> 
+### <a name="to-maintenance"></a>Режим обслуживания Maintenance Mode 
 1. В админ-панели пункт зайти в меню "Appearance", подпункт "Customize"
 2. Выбрать раздел "Maintenance"
 3. Отметить чек-бокс "Maintenance mode"
 4. Сохранить изменения - нажать кнопку "Publish"
 
-### Копирайт в футере<a name="to-copyright"></a>
+### <a name="to-copyright"></a>Копирайт в футере
 Через FTP отредактировать файл:
 
 `/themes/alpclub-odessa/template-parts/footer/copyright.php`
 
-### Настройка контактных данных<a name="to-contact-data"></a>
+### <a name="to-contact-data"></a>Настройка контактных данных
 Адрес, телефоны, почта, рабочее время и прочее.
 Через FTP отредактировать файл:
 
 `/themes/alpclub-odessa/include/customizer/defaults.php`
 
-### Форма "Контакты"<a name="to-contact-form-a"></a>
+### <a name="to-contact-form-a"></a>Форма "Контакты"
 Пункт меню Settings -> AT Contact Form.
 
 Результаты submit могут
@@ -218,7 +218,7 @@ person-klebanskij-vladimir.jpg
 
 Отдельно настраивается reCaptcha. Подробнее на [Google](https://www.google.com/recaptcha/intro/android.html)
 
-## Программисту<a name="to-programmer"></a>
+## <a name="to-programmer"></a>Программисту
 
 ###  Настройки хостинга
 - Код дочерней темы работает по PHP 7.2
@@ -286,7 +286,7 @@ if (is_customize_preview()) { require_once trailingslashit( get_template_directo
 		// Ограничение количества ревизий постов в базе данных: 0
 		add_filter( 'wp_revisions_to_keep', function ( $num, $post ) : int { return 0; }, 10, 2 );
 ```  
-## 4. TO-DO<a name="to-do"></a>
+## <a name="to-do"></a>4. TO-DO
 - [ ] Отказаться от Google Forms
   - Достоинство форм
     - Уже работает и Easy
