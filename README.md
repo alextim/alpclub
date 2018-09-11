@@ -10,7 +10,7 @@
    - [**Важное**](#to-important)
    - [Режим обслуживания, Maintenance Mode](#to-maintenance)
    - [Копирайт в футере](#to-copyright)
-   - [Настройка контактных данных](#to-cotact-data)
+   - [Настройка контактных данных](#to-contact-data)
    - [Форма "Контакты"](#to-contact-form-a)
 3. [Программисту](#to-programmer)
    - Настройки хостинга
