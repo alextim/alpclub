@@ -8,7 +8,7 @@
    - [Шоткоды](#to-shortcodes)
    - [Форма "Контакты"](#to-contact-form-e)
    - [Home (Домой — Главная страница)](#to-home-page)
-   - [Мероприятия (Trips))](#to-trips)
+   - [Мероприятия (Trips)](#to-trips)
 3. [Администратору](#to-admin)
    - [**![#f03c15](https://placehold.it/15/f03c15/000000?text=+) Важное!!!**](#to-important)
    - [Режим обслуживания, Maintenance Mode](#to-maintenance)
